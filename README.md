@@ -100,7 +100,7 @@ Start the nginx daemon:
 # service nginx start
 ```
 
-Then, open `http://localhost/hello` in your web browser.
+Then, open `http://localhost/` in your web browser.
 
 ## Further Examples
 Additional examples can be found in `examples/`:
