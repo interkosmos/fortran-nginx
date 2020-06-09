@@ -30,22 +30,6 @@ module hello
 
     logical, save :: is_service_on = .false.
 contains
-    ! void ngx_link_func_init_cycle(ngx_link_func_cycle_t* cyc)
-    subroutine ngx_link_func_init_cycle(cyc) bind(c)
-        type(ngx_link_func_cycle_t), intent(in) :: cyc
-
-        call ngx_link_func_cyc_log_info(cyc, 'Starting the web app ...' // c_null_char)
-        is_service_on = .true.
-    end subroutine ngx_link_func_init_cycle
-
-    ! void ngx_link_func_exit_cycle(ngx_link_func_cycle_t* cyc)
-    subroutine ngx_link_func_exit_cycle(cyc) bind(c)
-        type(ngx_link_func_cycle_t), intent(in) :: cyc
-
-        call ngx_link_func_cyc_log_info(cyc, 'Shutting down the web app ...' // c_null_char)
-        is_service_on = .false.
-    end subroutine ngx_link_func_exit_cycle
-
     subroutine ngx_hello(ctx) bind(c)
         character(len=*), parameter :: content = '<!DOCTYPE html>' // &
                                                  '<html lang="en">' // &
@@ -65,4 +49,20 @@ contains
                                       content // c_null_char, &
                                       int(len(content), kind=8))
     end subroutine ngx_hello
+
+    ! void ngx_link_func_init_cycle(ngx_link_func_cycle_t* cyc)
+    subroutine ngx_link_func_init_cycle(cyc) bind(c)
+        type(ngx_link_func_cycle_t), intent(in) :: cyc
+
+        call ngx_link_func_cyc_log_info(cyc, 'Starting the web app ...' // c_null_char)
+        is_service_on = .true.
+    end subroutine ngx_link_func_init_cycle
+
+    ! void ngx_link_func_exit_cycle(ngx_link_func_cycle_t* cyc)
+    subroutine ngx_link_func_exit_cycle(cyc) bind(c)
+        type(ngx_link_func_cycle_t), intent(in) :: cyc
+
+        call ngx_link_func_cyc_log_info(cyc, 'Shutting down the web app ...' // c_null_char)
+        is_service_on = .false.
+    end subroutine ngx_link_func_exit_cycle
 end module hello

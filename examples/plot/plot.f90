@@ -8,7 +8,7 @@
 !
 !     http://localhost/?a=5&b=20
 !
-! The min. (0) and max. (50) values for both parameters are hard-coded.
+! The min. (1) and max. (50) values for both parameters are hard-coded.
 !
 ! Be aware that the DISLIN library `./lib/dislin-*.a` must have been compiled
 ! with flag `-fPIC`!!
@@ -39,8 +39,8 @@ module plot
     implicit none
     private
 
-    !! Point estimates for model parameters, taken from:
-    !!     https://www.math.tamu.edu/~phoward/m442/modbasics.pdf
+    ! Point estimates for model parameters, taken from:
+    !     https://www.math.tamu.edu/~phoward/m442/modbasics.pdf
     real(kind=wp), parameter :: ALPHA = 0.470_wp
     real(kind=wp), parameter :: BETA  = 0.024_wp
     real(kind=wp), parameter :: DELTA = 0.023_wp
