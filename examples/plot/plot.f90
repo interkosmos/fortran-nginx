@@ -6,7 +6,7 @@
 ! The initial population sizes of predator and prey species are passed by the
 ! HTTP GET parameters `a` and `b`:
 !
-!     http://localhost/?a=5&b=20
+!     http://localhost/plot.png?a=5&b=20
 !
 ! The min. (1) and max. (50) values for both parameters are hard-coded.
 !
