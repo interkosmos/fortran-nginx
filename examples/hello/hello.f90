@@ -10,13 +10,13 @@
 !             server_name       localhost;
 !             ngx_link_func_lib "/usr/local/etc/nginx/hello.so";
 !
-!             location = /greeting {
-!                 ngx_link_func_call "greeting";
+!             location = / {
+!                 ngx_link_func_call "ngx_hello";
 !             }
 !         }
 !     }
 !
-! Restart nginx and Open `http://localhost/greeting` with your web browser.
+! Start nginx and open `http://localhost/` in your web browser.
 !
 ! Author:  Philipp Engel
 ! Licence: ISC
@@ -24,7 +24,7 @@ module hello
     use, intrinsic :: iso_c_binding
     use :: ngx_link_func
     implicit none
-    public :: greeting
+    public :: ngx_hello
     public :: ngx_link_func_exit_cycle
     public :: ngx_link_func_init_cycle
 
@@ -46,7 +46,7 @@ contains
         is_service_on = .false.
     end subroutine ngx_link_func_exit_cycle
 
-    subroutine greeting(ctx) bind(c)
+    subroutine ngx_hello(ctx) bind(c)
         character(len=*), parameter :: content = '<!DOCTYPE html>' // &
                                                  '<html lang="en">' // &
                                                  '<head>' // &
@@ -61,8 +61,8 @@ contains
         call ngx_link_func_write_resp(ctx, &
                                       int(200, kind=8), &
                                       '200 OK' // c_null_char, &
-                                      NGX_LINK_FUNC_CONTENT_TYPE_PLAINTEXT, &
+                                      NGX_LINK_FUNC_CONTENT_TYPE_HTML, &
                                       content // c_null_char, &
                                       int(len(content), kind=8))
-    end subroutine greeting
+    end subroutine ngx_hello
 end module hello
