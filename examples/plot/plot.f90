@@ -182,11 +182,11 @@ contains
         call messag(trim(lab), 100, 2000)
 
         ! Set axis.
-        call name('x-axis', 'Time')
-        call name('y-axis', 'Population Size')
+        call name('Time', 'X')
+        call name('Population Size', 'Y')
 
-        call labdig(-1, 'x')
-        call ticks(10, 'xy')
+        call labdig(-1, 'X')
+        call ticks(10, 'XY')
 
         c = intrgb(.95, .95, .95)
         call axsbgd(c)

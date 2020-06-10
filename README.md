@@ -30,7 +30,8 @@ Or, just install a package that has been compiled with `LINK`:
 ```
 
 ## Build
-Use the provided `Makefile` to build `ngx_link_func.o`, or simply run:
+Use the provided `Makefile` to build the interface bindings `ngx_link_func.o`,
+or simply run:
 
 ```
 $ gfortran -c src/ngx_link_func.f90
