@@ -104,7 +104,7 @@ contains
         character(len=:), allocatable         :: png
         character(len=:), allocatable         :: a, b
         integer                               :: i, rc
-        real(kind=wp)                         :: t(N)  = [ (H * i, i = 1,  N) ]
+        real(kind=wp)                         :: t(N)  = [ (H * i, i = 1, N) ]
         real(kind=wp)                         :: r(2)
         real(kind=wp)                         :: x(N), y(N)
 
