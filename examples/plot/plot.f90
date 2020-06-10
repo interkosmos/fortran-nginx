@@ -4,9 +4,9 @@
 ! Lotka-Volterra ODEs, solved using the Runge-Kutta 4th order method.
 !
 ! The initial population sizes of predator and prey species are passed by the
-! HTTP GET parameters `a` and `b`:
+! HTTP GET parameters `u` and `v`:
 !
-!     http://localhost/plot.png?a=5&b=20
+!     http://localhost/plot.png?u=5&v=20
 !
 ! The min. (1) and max. (50) values for both parameters are hard-coded.
 !
@@ -102,24 +102,24 @@ contains
         integer,       parameter              :: N     = T_MAX / H
         type(ngx_link_func_ctx_t), intent(in) :: ctx
         character(len=:), allocatable         :: png
-        character(len=:), allocatable         :: a, b
+        character(len=:), allocatable         :: u, v
         integer                               :: i, rc
         real(kind=wp)                         :: t(N)  = [ (H * i, i = 1, N) ]
         real(kind=wp)                         :: r(2)
         real(kind=wp)                         :: x(N), y(N)
 
         ! Initial prey population.
-        a = ngx_link_func_get_query_param(ctx, 'a' // c_null_char)
+        u = ngx_link_func_get_query_param(ctx, 'u' // c_null_char)
         ! Initial predator population.
-        b = ngx_link_func_get_query_param(ctx, 'b' // c_null_char)
+        v = ngx_link_func_get_query_param(ctx, 'v' // c_null_char)
 
-        read (a, *, iostat=rc) r(1)
-        read (b, *, iostat=rc) r(2)
+        read (u, *, iostat=rc) r(1)
+        read (v, *, iostat=rc) r(2)
 
         r(1) = min(50, max(1, int(r(1))))
         r(2) = min(50, max(1, int(r(2))))
 
-        ! Solve ODE.
+        ! Solve ODEs.
         do i = 1, N
             x(i) = r(1)
             y(i) = r(2)
