@@ -1,7 +1,7 @@
 # fortran-nginx
 A collection of ISO C binding interfaces to the 3rd party module
 [nginx-link-function](https://github.com/Taymindis/nginx-link-function/) for
-[nginx](https://nginx.org/), for writing server-side web applications in Fortran
+[nginx](https://nginx.org/), to write server-side web applications in Fortran
 2003.
 
 Shared memory features (`cache`, `palloc`, `shm`, `shmtx`) that allow resource
@@ -12,8 +12,8 @@ Either install [nginx](https://nginx.org/) or
 [OpenResty](https://openresty.org/) with the
 [nginx-link-function](https://github.com/Taymindis/nginx-link-function/) module.
 
-On FreeBSD, simply build [www/nginx](https://www.freshports.org/www/nginx) with
-the `LINK` option enabled from ports:
+On FreeBSD, build [www/nginx](https://www.freshports.org/www/nginx) with the
+`LINK` option enabled from ports:
 
 ```
 # cd /usr/local/ports/www/nginx/
@@ -87,7 +87,7 @@ $ gfortran -shared -fPIC -o webapp.so webapp.f90 ngx_link_func.o
 If you use GNU Fortran, make sure that nginx can find the run-time library
 `libgfortran.so`!
 
-Load the shared library by setting `ngx_link_func_lib` and `ngx_link_func_lib`
+Load the shared library by setting `ngx_link_func_lib` and `ngx_link_func_call`
 in your `nginx.conf`:
 
 ```nginx
