@@ -30,12 +30,7 @@ Or, just install a package that has been compiled with `LINK`:
 ```
 
 ## Build
-Use the provided `Makefile` to build the interface bindings `ngx_link_func.o`,
-or simply run:
-
-```
-$ gfortran -c src/ngx_link_func.f90
-```
+Use the provided `Makefile` to build the static library `ngx_link_func.a`.
 
 ## Example
 Your Fortran web application must implement at least the routines
@@ -82,7 +77,7 @@ end module webapp
 Compile the shared library `webapp.so` with:
 
 ```
-$ gfortran -shared -fPIC -o webapp.so webapp.f90 ngx_link_func.o
+$ gfortran -shared -fPIC -o webapp.so webapp.f90 ngx_link_func.a
 ```
 
 If you use GNU Fortran, make sure that nginx can find the run-time library
