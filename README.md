@@ -92,6 +92,9 @@ Load the shared library by setting `ngx_link_func_lib` and `ngx_link_func_call`
 in your `nginx.conf`:
 
 ```nginx
+# Load shared library if module is not linked statically:
+load_module "/usr/local/libexec/nginx/ngx_http_link_func_module.so";
+
 server {
     listen            80;
     server_name       localhost;
