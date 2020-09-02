@@ -113,8 +113,8 @@ Then, open `http://localhost/` in your web browser.
 Additional examples can be found in `examples/`:
 
   * **hello** returns a basic HTML response.
-  * **laas** (LAPACK as a Service) solves a system of linear equations *A · x = B* using [LAPACK95](https://www.netlib.org/lapack95/) (requires LAPACK95).
-  * **plot** returns a plot of the [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka–Volterra_equations) ODEs in PNG format, using the [DISLIN](http://dislin.de/) library. Pass the initial population sizes through HTTP GET parameters `u` and `v` ([example output](examples/plot/output.png)) (requires DISLIN).
+  * **laas** (LAPACK as a Service) solves a system of linear equations *A · x = B* using [LAPACK95](https://www.netlib.org/lapack95/).
+  * **plot** returns a plot of the [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka–Volterra_equations) ODEs in PNG format, using the [DISLIN](http://dislin.de/) library. Pass the initial population sizes through HTTP GET parameters `u` and `v` ([example output](examples/plot/output.png)).
   * **post** parses HTTP POST parameters.
 
 Build the examples with:
