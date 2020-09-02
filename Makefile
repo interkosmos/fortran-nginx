@@ -8,7 +8,7 @@ LDFLAGS  = -I$(PREFIX)/include/ -L$(PREFIX)/lib/
 LDLIBS   = -ldl
 DISLIN   = -lX11 -lXt -lXm -lGL
 LAPACK95 = -llapack95 -llapack -lblas -ltmglib
-TARGET   = libngx_link_func.a
+TARGET   = libfortran-nginx.a
 
 HELLO    = hello
 LAAS     = laas
