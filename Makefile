@@ -2,14 +2,13 @@
 .SUFFIXES:
 
 FC       = gfortran
-FFLAGS   = -fmax-errors=1 -Wall -Wno-maybe-uninitialized \
-           -shared -fPIC
+FFLAGS   = -fmax-errors=1 -Wall -Wno-maybe-uninitialized -shared -fPIC
 PREFIX   = /usr/local
 LDFLAGS  = -I$(PREFIX)/include/ -L$(PREFIX)/lib/
 LDLIBS   = -ldl
 DISLIN   = -lX11 -lXt -lXm -lGL
 LAPACK95 = -llapack95 -llapack -lblas -ltmglib
-TARGET   = ngx_link_func.a
+TARGET   = libngx_link_func.a
 
 HELLO    = hello
 LAAS     = laas
@@ -41,4 +40,4 @@ $(POST): $(TARGET)
 	$(FC) $(FFLAGS) $(LDFLAGS) -o $(POST).so examples/post/post.f90 $(TARGET) $(LDLIBS)
 
 clean:
-	rm *.mod *.o *.so
+	rm *.mod *.o *.so *.a

@@ -30,7 +30,7 @@ Or, just install a package that has been compiled with `LINK`:
 ```
 
 ## Build
-Use the provided `Makefile` to build the static library `ngx_link_func.a`.
+Use the provided `Makefile` to build the static library `libngx_link_func.a`.
 
 ## Example
 Your Fortran web application must implement at least the routines
@@ -50,12 +50,12 @@ contains
         type(ngx_link_func_ctx_t), intent(in) :: ctx
 
         call ngx_link_func_log_info(ctx, 'Sending response ...' // c_null_char)
-        call ngx_link_func_write_resp(ctx, &
-                                      int(200, kind=8), &
-                                      '200 OK' // c_null_char, &
-                                      'text/plain' // c_null_char, &
-                                      str // c_null_char, &
-                                      int(len(str), kind=8))
+        call ngx_link_func_write_resp(ctx          = ctx, &
+                                      status_code  = int(200, kind=8), &
+                                      status_line  = '200 OK' // c_null_char, &
+                                      content_type = 'text/plain' // c_null_char, &
+                                      resp_content = str // c_null_char, &
+                                      resp_len     = int(len(str), kind=8))
     end subroutine ngx_hello
 
     subroutine ngx_link_func_exit_cycle(cyc) bind(c)
@@ -77,11 +77,11 @@ end module webapp
 Compile the shared library `webapp.so` with:
 
 ```
-$ gfortran -shared -fPIC -o webapp.so webapp.f90 ngx_link_func.a
+$ gfortran -shared -fPIC -o webapp.so webapp.f90 libngx_link_func.a
 ```
 
 If you use GNU Fortran, make sure that nginx can find the run-time library
-`libgfortran.so`!
+`libgfortran.so`.
 
 Load the shared library by setting `ngx_link_func_lib` and `ngx_link_func_call`
 in your `nginx.conf`:
@@ -113,8 +113,8 @@ Then, open `http://localhost/` in your web browser.
 Additional examples can be found in `examples/`:
 
   * **hello** returns a basic HTML response.
-  * **laas** (LAPACK as a Service) solves a system of linear equations *A · x = B* using [LAPACK95](https://www.netlib.org/lapack95/).
-  * **plot** returns a plot of the [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka–Volterra_equations) ODEs in PNG format, using the [DISLIN](http://dislin.de/) library. Pass the initial population sizes through HTTP GET parameters `u` and `v` ([example output](examples/plot/output.png)).
+  * **laas** (LAPACK as a Service) solves a system of linear equations *A · x = B* using [LAPACK95](https://www.netlib.org/lapack95/) (requires LAPACK95).
+  * **plot** returns a plot of the [Lotka-Volterra](https://en.wikipedia.org/wiki/Lotka–Volterra_equations) ODEs in PNG format, using the [DISLIN](http://dislin.de/) library. Pass the initial population sizes through HTTP GET parameters `u` and `v` ([example output](examples/plot/output.png)) (requires DISLIN).
   * **post** parses HTTP POST parameters.
 
 Build the examples with:
