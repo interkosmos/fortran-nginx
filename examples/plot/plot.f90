@@ -211,8 +211,8 @@ contains
         call color('fore')
         call legini(leg, 2, 8)
         call legtit(' ')
-        call leglin(leg, 'Predator', 1)
-        call leglin(leg, 'Prey', 2)
+        call leglin(leg, 'Prey', 1)
+        call leglin(leg, 'Predator', 2)
         call legend(leg, 7)
 
         ! Copy raw PNG to buffer.
